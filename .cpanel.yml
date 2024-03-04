@@ -1,6 +1,6 @@
 ##### THIS ALLOWS US TO DEPLOY THE SITE FROM A GIT REPO ######—Deployment:
 Tasks:
-- export DEPLOYPATH=/home/your-username/public_html/
+- export DEPLOYPATH=/home/avasiiva/public_html/
 - /bin/cp -R .vscode $DEPLOYPATH
 - /bin/cp -R assets $DEPLOYPATH
 - /bin/cp -R css $DEPLOYPATH
