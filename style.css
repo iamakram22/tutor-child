@@ -9,3 +9,104 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: tutor-child
 Template: tutorstarter
 */
+
+:root {
+  --pri: #ef7f1b;
+  --sec: #1655a4;
+}
+:not(.logged-in) .banner__slider {
+  display: none;
+}
+.logged-in .banner__slider {
+  display: initial;
+}
+.banner__slider img.swiper-slide-image {
+  /*     aspect-ratio: 16/4 !important; */
+  object-fit: contain !important;
+  max-height: 400px !important;
+}
+.logged-in .login__form h2 {
+  padding: 50px;
+  text-align: center;
+  font-size: 25px;
+  color: transparent;
+  visibility: hidden;
+}
+:not(.elementor-editor-active).logged-in .login__form > div {
+  background: transparent !important;
+}
+.tutor-login-wrap {
+  padding: 50px 20px !important;
+}
+.login__form .tutor-login-form-wrapper > div.tutor-fs-5 {
+  color: #00000000;
+  line-height: 1px;
+}
+.tutor-login-form-wrapper > div.tutor-fs-5::after {
+  content: "Existing students / teachers Login here";
+  display: block;
+  text-align: center;
+  color: black;
+  font-size: 0.9em;
+  line-height: 1em;
+}
+.login__form .tutor-login-wrap {
+  max-width: unset;
+}
+:not(.elementor-editor-active).logged-in .login__form {
+  display: none;
+}
+section.footer-widgets .container {
+  padding-bottom: 30px;
+}
+.tutor-dashboard-menu-certificate-builder {
+  display: none;
+}
+
+#site_editing_form .btn-primary {
+  --bs-btn-bg: var(--pri);
+  --bs-btn-border-color: var(--pri);
+}
+.franchise-branding {
+  display: flex;
+  align-items: center;
+  -webkit-gap: 10px;
+  gap: 10px;
+  min-height: 50px;
+}
+#frachise_name {
+  font-weight: bold;
+}
+#franchise_logo {
+  max-width: 100px;
+  object-fit: contain;
+}
+.contact-detail-wrap {
+  padding-bottom: 10px;
+}
+.contact-detail {
+  padding-left: 5px;
+}
+.client_form.container {
+  max-width: 540px;
+  margin-left: 0;
+}
+
+/**
+ * Media queries
+ */
+@media (max-width: 767px) {
+  .tutor-login-wrap {
+    padding: 40px 20px;
+  }
+  .tutor-login-form-wrapper {
+    padding: 0px;
+  }
+
+  #dash_btn .elementor-button-text {
+    display: none;
+  }
+  #dash_btn .elementor-button-icon {
+    margin-right: 0;
+  }
+}
