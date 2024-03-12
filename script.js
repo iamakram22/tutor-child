@@ -1,6 +1,13 @@
 (function ($) {
   $(document).ready(function () {
     /**
+     * Autoplay video on page load
+     */
+    $(".autoplay video").each(function () {
+      $(this).get(0).play();
+    });
+
+    /**
      * Open WP media on site setting form
      */
     $("#open_media_gallery").on("click", function (e) {

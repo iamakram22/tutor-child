@@ -45,7 +45,6 @@ function wporg_simple_role_caps()
         'update_themes',
         'install_themes',
         'update_core',
-        'create_user',
         'promote_users',
         'edit_theme_options',
         'delete_themes',
