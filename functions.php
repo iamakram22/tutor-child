@@ -22,7 +22,7 @@ function child_enqueue_styles()
 {
 	wp_register_style('bootstrap', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.css', array(), time(), 'all');
 	wp_enqueue_style('tutor-child', get_stylesheet_directory_uri() . '/style.css', array(), time(), 'all');
-	
+
 	wp_enqueue_media(); // for accessing WP media
 	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/script.js', array('jquery'), time(), true);
 	wp_localize_script(
@@ -103,8 +103,7 @@ function franchise_branding($atts)
 	<?php
 	if ($atts['desc']) {
 		?>
-		<div class="site_desc"
-			style="color : <?php echo $atts['bg'] === 'light' ? '#000000' : '#FFFFFF'; ?> ; padding-top: 10px;">
+		<div class="site_desc" style="color: <?php echo $atts['bg'] === 'light' ? '#000000' : '#FFFFFF'; ?>;">
 			<?php echo $desc; ?>
 		</div>
 		<?php

@@ -76,13 +76,19 @@ section.footer-widgets .container {
 }
 #frachise_name {
   font-weight: bold;
+  font-size: 20px;
 }
 #franchise_logo {
   max-width: 100px;
   object-fit: contain;
 }
+.site_desc {
+  padding-top: 10px;
+  font-size: 18px;
+}
 .contact-detail-wrap {
   padding-bottom: 10px;
+  font-size: 18px;
 }
 .contact-detail {
   padding-left: 5px;
@@ -98,7 +104,12 @@ section.footer-widgets .container {
   box-shadow: 0 0 10px 0 rgba(0 0 0 / 0.1);
   padding: 5px;
 }
-
+.why_avas span:not(.elementor-icon-list-text) {
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  line-height: 1em;
+}
 /**
  * Media queries
  */
