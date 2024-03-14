@@ -31,7 +31,6 @@
           .first()
           .toJSON();
         let imageUrl = attachment.url;
-        console.log(attachment);
 
         // Update the input field with the selected image URL
         $("#client_logo").val(imageUrl);
