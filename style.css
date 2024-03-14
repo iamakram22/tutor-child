@@ -52,9 +52,13 @@ Template: tutorstarter
 }
 .login__form .tutor-login-wrap {
   max-width: unset;
+	margin: 0;
 }
 :not(.elementor-editor-active).logged-in .login__form {
   display: none;
+}
+#page .tutor-wrap {
+	padding: 0;
 }
 section.footer-widgets .container {
   padding-bottom: 30px;
