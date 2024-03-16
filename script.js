@@ -84,5 +84,15 @@
         },
       });
     }); // form submit
+
+    // Course list color
+    const bgColors = ["#68b9d8", "#f07f1a", "#b1c642", "#ff5d52", "#fedc09"];
+    const courseList = $("#course_list .tutor-card-body");
+    let startColor = 0;
+    courseList.each(function () {
+      $(this).css({ "background-color": bgColors[startColor] + "40" });
+      startColor = (startColor + 1) % bgColors.length;
+    });
+
   }); // doc.ready
 })(jQuery);
