@@ -57,16 +57,12 @@ Template: tutorstarter
 :not(.elementor-editor-active).logged-in .login__form {
   display: none;
 }
-#page .tutor-wrap {
-	padding: 0;
-}
 section.footer-widgets .container {
   padding-bottom: 30px;
 }
 .tutor-dashboard-menu-certificate-builder {
   display: none;
 }
-
 #site_editing_form .btn-primary {
   --bs-btn-bg: var(--pri);
   --bs-btn-border-color: var(--pri);

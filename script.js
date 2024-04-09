@@ -94,5 +94,10 @@
       startColor = (startColor + 1) % bgColors.length;
     });
 
+    const courseCatMeta = $('.etlms-course-category-meta.tutor-meta-key');
+    courseCatMeta.each(function() {
+      $(this).text('for');
+    });
+
   }); // doc.ready
 })(jQuery);

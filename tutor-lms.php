@@ -2,7 +2,6 @@
 add_filter('tutor_dashboard/bottom_nav_items', 'site_setting_dashboard');
 add_filter('tutor_dashboard/instructor_nav_items', 'instructor_navigation');
 add_filter('tutor_dashboard/nav_items/settings/nav_items', 'dashboard_navigation');
-// add_filter('tutor_dashboard/nav_items', 'some_links_dashboard');
 add_action('tutor_backend_profile_fields_after', 'tutor_custom_profile_fields');
 
 /**
@@ -48,21 +47,6 @@ function site_setting_dashboard($links)
         );
     }
     return $links;
-}
-
-/**
- * Lists invoices in frontend
- *
- * @param [type] $links
- * @return void
- */
-function some_links_dashboard($links)
-{
-	$links['invoice'] = array(
-		'title' => __('Invoices', 'tutor'),
-		'icon' => 'tutor-icon-file-text',
-	);
-	return $links;
 }
 
 /**

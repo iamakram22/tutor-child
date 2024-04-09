@@ -9,7 +9,6 @@
  * @since 1.4.3
  */
 
-wp_enqueue('bootstrap-style');
 ?>
 
 <?php if ( ! get_option( 'users_can_register', false ) ) : ?> 
@@ -57,7 +56,7 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-group">
 					<?php esc_html_e( 'Salutation', 'tutor' ); ?>
-					<div class="d-flex">
+						<div class="d-flex">
 						<label class="pr-2">
 							<input type="radio" name="salutation" value="mr" required>
 							Mr.
@@ -73,21 +72,21 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( 'First Name', 'tutor' ); ?>
 						</label>
 
-						<input type="text" name="first_name" value="<?php echo esc_attr( tutor_utils()->input_old( 'first_name' ) ); ?>" placeholder="<?php esc_attr_e( 'First Name', 'tutor' ); ?>" required autocomplete="given-name">
+						<input type="text" name="first_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'first_name' ) ); ?>" placeholder="<?php esc_attr_e( 'First Name', 'tutor' ); ?>" required autocomplete="given-name">
 					</div>
 				</div>
 
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( 'Last Name', 'tutor' ); ?>
 						</label>
 
-						<input type="text" name="last_name" value="<?php echo esc_attr( tutor_utils()->input_old( 'last_name' ) ); ?>" placeholder="<?php esc_attr_e( 'Last Name', 'tutor' ); ?>" required autocomplete="family-name">
+						<input type="text" name="last_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'last_name' ) ); ?>" placeholder="<?php esc_attr_e( 'Last Name', 'tutor' ); ?>" required autocomplete="family-name">
 					</div>
 				</div>
 
@@ -96,21 +95,21 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( 'User Name', 'tutor' ); ?>
 						</label>
 
-						<input type="text" name="user_login" class="tutor_user_name" value="<?php echo esc_attr( tutor_utils()->input_old( 'user_login' ) ); ?>" placeholder="<?php esc_html_e( 'User Name', 'tutor' ); ?>" required autocomplete="username">
+						<input type="text" name="user_login" class="tutor_user_name tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'user_login' ) ); ?>" placeholder="<?php esc_html_e( 'User Name', 'tutor' ); ?>" required autocomplete="username">
 					</div>
 				</div>
 
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( 'E-Mail', 'tutor' ); ?>
 						</label>
 
-						<input type="text" name="email" value="<?php echo esc_attr( tutor_utils()->input_old( 'email' ) ); ?>" placeholder="<?php esc_html_e( 'E-Mail', 'tutor' ); ?>" required autocomplete="email">
+						<input type="text" name="email" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'email' ) ); ?>" placeholder="<?php esc_html_e( 'E-Mail', 'tutor' ); ?>" required autocomplete="email">
 					</div>
 				</div>
 
@@ -121,11 +120,11 @@ wp_enqueue('bootstrap-style');
 					<div class="tutor-form-group">
 						<div class="tutor-password-strength-checker">
 							<div class="tutor-password-field">
-								<label>
+								<label class="tutor-form-label tutor-color-secondary">
 									<?php esc_html_e( 'Password', 'tutor' ); ?>
 								</label>
 
-								<input class="password-checker" id="tutor-new-password" type="password" name="password" value="<?php echo esc_attr( tutor_utils()->input_old( 'password' ) ); ?>" placeholder="<?php esc_html_e( 'Password', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
+								<input class="password-checker" id="tutor-new-password" type="password" name="password" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password' ) ); ?>" placeholder="<?php esc_html_e( 'Password', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
 								<span class="show-hide-btn"></span>
 							</div>
 
@@ -143,13 +142,13 @@ wp_enqueue('bootstrap-style');
 
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( 'Password confirmation', 'tutor' ); ?>
 						</label>
 
 						<div class="tutor-form-wrap">
 							<span class="tutor-validation-icon tutor-icon-mark tutor-color-success tutor-form-icon tutor-form-icon-reverse" style="display: none;"></span>
-							<input type="password" name="password_confirmation" value="<?php echo esc_attr( tutor_utils()->input_old( 'password_confirmation' ) ); ?>" placeholder="<?php esc_html_e( 'Password Confirmation', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
+							<input type="password" name="password_confirmation" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password_confirmation' ) ); ?>" placeholder="<?php esc_html_e( 'Password Confirmation', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
 						</div>
 					</div>
 				</div>
@@ -158,11 +157,11 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Phone Number', 'tutor'); ?>
 						</label>
 
-						<input type="text" name="phone_no" value="<?php echo tutor_utils()->input_old('phone_no'); ?>" placeholder="<?php _e('Phone Number', 'tutor'); ?>">
+						<input type="text" name="phone_no" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('phone_no'); ?>" placeholder="<?php _e('Phone Number', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>
@@ -170,10 +169,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Gender', 'tutor'); ?>
 						</label>
-						<select name="gender" class="form-select" value="<?php echo tutor_utils()->input_old('gender'); ?>">
+						<select name="gender" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('gender'); ?>">
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
 							<option value="Prefer not to say">Prefer not to say</option>
@@ -185,10 +184,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Date of Birth', 'tutor'); ?>
 						</label>
-						<input type="date" name="dob" class="form-control" value="<?php echo tutor_utils()->input_old('dob'); ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
+						<input type="date" name="dob" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('dob'); ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
 					</div>
 				</div>
 			</div>
@@ -196,10 +195,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Course', 'tutor'); ?>
 						</label>
-						<select name="course" class="form-select" value="<?php echo tutor_utils()->input_old('course'); ?>">
+						<select name="course" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('course'); ?>">
 							<option value="Abacus">Abacus</option>
 							<option value="Vedic Maths">Vedic Maths</option>
 							<option value="Handwriting">Handwriting</option>
@@ -216,10 +215,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Marital status', 'tutor'); ?>
 						</label>
-						<select name="marital_status" class="form-select" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
+						<select name="marital_status" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
 							<option value="Married">Married</option>
 							<option value="Single/Unmarried">Single/Unmarried</option>
 							<option value="Divorced">Divorced</option>
@@ -231,10 +230,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Father\'s name', 'tutor'); ?>
 						</label>
-						<input type="text" name="father" class="form-control" value="<?php echo tutor_utils()->input_old('father'); ?>">
+						<input type="text" name="father" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('father'); ?>">
 					</div>
 				</div>
 			</div>
@@ -242,10 +241,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Mother\'s name', 'tutor'); ?>
 						</label>
-						<input type="text" name="mother" class="form-control" value="<?php echo tutor_utils()->input_old('mother'); ?>">
+						<input type="text" name="mother" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('mother'); ?>">
 					</div>
 				</div>
 			</div>
@@ -253,10 +252,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Religion', 'tutor'); ?>
 						</label>
-						<input type="text" name="religion" class="form-control" value="<?php echo tutor_utils()->input_old('religion'); ?>">
+						<input type="text" name="religion" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('religion'); ?>">
 					</div>
 				</div>
 			</div>
@@ -264,10 +263,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Category', 'tutor'); ?>
 						</label>
-						<input type="text" name="category" class="form-control" value="<?php echo tutor_utils()->input_old('category'); ?>">
+						<input type="text" name="category" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('category'); ?>">
 					</div>
 				</div>
 			</div>
@@ -275,10 +274,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Domicile state', 'tutor'); ?>
 						</label>
-						<input type="text" name="domicile_state" class="form-control" value="<?php echo tutor_utils()->input_old('domicile_state'); ?>">
+						<input type="text" name="domicile_state" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_state'); ?>">
 					</div>
 				</div>
 			</div>
@@ -286,10 +285,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Domicile district', 'tutor'); ?>
 						</label>
-						<input type="text" name="domicile_district" class="form-control" value="<?php echo tutor_utils()->input_old('domicile_district'); ?>">
+						<input type="text" name="domicile_district" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_district'); ?>">
 					</div>
 				</div>
 			</div>
@@ -297,10 +296,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('State constituency', 'tutor'); ?>
 						</label>
-						<input type="text" name="state_const" class="form-control" value="<?php echo tutor_utils()->input_old('state_const'); ?>">
+						<input type="text" name="state_const" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('state_const'); ?>">
 					</div>
 				</div>
 			</div>
@@ -308,10 +307,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Aadhar number', 'tutor'); ?>
 						</label>
-						<input type="text" inputmode="numeric" name="aadhar" class="form-control" value="<?php echo tutor_utils()->input_old('aadhar'); ?>">
+						<input type="text" inputmode="numeric" name="aadhar" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('aadhar'); ?>">
 					</div>
 				</div>
 			</div>
@@ -319,10 +318,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Permanent address', 'tutor'); ?>
 						</label>
-						<input type="text" name="address" class="form-control" value="<?php echo tutor_utils()->input_old('address'); ?>">
+						<input type="text" name="address" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('address'); ?>">
 					</div>
 				</div>
 			</div>
@@ -330,10 +329,10 @@ wp_enqueue('bootstrap-style');
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
-						<label>
+						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Area pin code', 'tutor'); ?>
 						</label>
-						<input type="number" name="pin" class="form-control" value="<?php echo tutor_utils()->input_old('pin'); ?>">
+						<input type="number" name="pin" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('pin'); ?>">
 					</div>
 				</div>
 			</div>
