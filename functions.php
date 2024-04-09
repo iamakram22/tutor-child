@@ -3,6 +3,24 @@
  * Constant for handling site setting form
  */
 define('CLIENT', unserialize(get_option('client_data', true)));
+define('CUSTOM_FIELDS', array(
+    'salutation' => 'Salutation',
+    'phone_no' => 'Phone Number',
+    'gender' => 'Gender',
+    'dob' => 'Date of Birth',
+    'course' => 'Course',
+    'marital_status' => 'Marital Status',
+    'father' => 'Father\'s Name',
+    'mother' => 'Mother\'s Name',
+    'religion' => 'Religion',
+    'category' => 'Category',
+    'domicile_state' => 'Domicile State',
+    'domicile_district' => 'Domicile district',
+    'state_const' => 'State constituency',
+    'aadhar' => 'Aadhar number',
+    'address' => 'Permanent address',
+    'pin' => 'Area pin code'
+));
 
 /**
  * Actions & Filters
@@ -11,7 +29,6 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
-add_action('wp_ajax_nopriv_client_editing_website', 'client_editing_website_function');
 
 /**
  * Enqueue styles & scripts
@@ -20,7 +37,8 @@ add_action('wp_ajax_nopriv_client_editing_website', 'client_editing_website_func
  */
 function child_enqueue_styles()
 {
-	wp_register_style('bootstrap', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.css', array(), time(), 'all');
+	wp_register_style('bootstrap-style', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.css', array(), time(), 'all');
+	wp_register_script('bootstrap-script', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.js', array('jquery'), time(), true);
 	wp_enqueue_style('tutor-child', get_stylesheet_directory_uri() . '/style.css', array(), time(), 'all');
 
 	wp_enqueue_media(); // for accessing WP media
@@ -38,6 +56,7 @@ function child_enqueue_styles()
  * Include Tutor LMS functions
  */
 include('tutor-lms.php');
+include('tutor-registration.php');
 
 /**
  * Handle Site setting form request
@@ -174,3 +193,80 @@ function franchise_contact($atts)
  * Include tutor access capabilities
  */
 include 'access.php';
+
+function add_export_users_menu_item() {
+    add_submenu_page(
+        'users.php',
+        'Export Users',
+        'Export Users',
+        'manage_options',
+        'export_users_page',
+        'export_users_page_callback'
+    );
+}
+add_action('admin_menu', 'add_export_users_menu_item');
+
+function export_users_page_callback() {
+    // Your HTML and form elements for the export page
+    echo '<div class="wrap">';
+    echo '<h2>Export Users</h2>';
+    echo '<form method="post" action="">';
+    echo '<input type="hidden" name="export_users" value="true" />';
+    echo '<input type="submit" value="Export Users" class="button-primary" />';
+    echo '</form>';
+    echo '</div>';
+}
+
+function handle_export_users() {
+    if (isset($_POST['export_users']) && $_POST['export_users'] === 'true') {
+        // Query all users
+		$args = array(
+            'role'         => 'subscriber',
+            'number'       => -1,
+        );
+        $users = get_users($args);
+
+		$csv_data = "ID,Username,Display Name,Email,Enrolled Courses,";
+		foreach (CUSTOM_FIELDS as $key => $value) {
+			$csv_data .= $value . ',';
+		}
+        // Prepare CSV data
+        $csv_data .= "\n";
+        foreach ($users as $user) {
+			$csv_data .= "{$user->ID},{$user->user_login},{$user->display_name},{$user->user_email},";
+
+			$enrolled_courses = array();
+			if ( function_exists('tutor_utils') ) {
+				$enrolled_courses = tutor_utils()->get_enrolled_courses_ids_by_user($user->ID);
+				if(!empty($enrolled_courses) && is_array($enrolled_courses)) {
+					foreach($enrolled_courses as $key => $course_id) {
+						$enrolled_courses[$key] = get_the_title($course_id);
+					}
+					$enrolled_courses = implode('; ', $enrolled_courses);
+				} else {
+					$enrolled_courses = '-';
+				}
+            } else {
+				$enrolled_courses = '-';
+			}
+			
+			$csv_data .= "$enrolled_courses,";
+            // You can add more user meta as needed
+			foreach(CUSTOM_FIELDS as $key => $value) {
+				$csv_data .= get_user_meta($user->ID, '_' . $key, true);
+				$csv_data .= ',';
+			}
+			$csv_data .= "\n";
+        }
+
+        // Output CSV file
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=users-" . time() . ".csv");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+		// echo '<pre>' . print_r($csv_data, true) . '</pre>';
+        echo $csv_data;
+        exit;
+    }
+}
+add_action('admin_init', 'handle_export_users');
