@@ -57,6 +57,9 @@ Template: tutorstarter
 :not(.elementor-editor-active).logged-in .login__form {
   display: none;
 }
+#page .tutor-wrap {
+	padding: 0;
+}
 section.footer-widgets .container {
   padding-bottom: 30px;
 }

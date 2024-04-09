@@ -1,5 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 /**
  * enqueue bootstrap
  */
