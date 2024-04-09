@@ -172,7 +172,7 @@
 						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Gender', 'tutor'); ?>
 						</label>
-						<select name="gender" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('gender'); ?>">
+						<select name="gender" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('gender'); ?>">
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
 							<option value="Prefer not to say">Prefer not to say</option>
@@ -198,7 +198,7 @@
 						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Course', 'tutor'); ?>
 						</label>
-						<select name="course" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('course'); ?>">
+						<select name="course" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('course'); ?>">
 							<option value="Abacus">Abacus</option>
 							<option value="Vedic Maths">Vedic Maths</option>
 							<option value="Handwriting">Handwriting</option>
@@ -218,7 +218,7 @@
 						<label class="tutor-form-label tutor-color-secondary">
 							<?php _e('Marital status', 'tutor'); ?>
 						</label>
-						<select name="marital_status" class="form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
+						<select name="marital_status" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
 							<option value="Married">Married</option>
 							<option value="Single/Unmarried">Single/Unmarried</option>
 							<option value="Divorced">Divorced</option>

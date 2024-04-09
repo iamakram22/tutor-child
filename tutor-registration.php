@@ -16,13 +16,10 @@ add_action('user_register', 'update_fields_on_registeration');
 add_action('profile_update', 'update_fields_on_registeration');
 if ( ! function_exists('update_fields_on_registeration')) {
     function update_fields_on_registeration($user_id){
-        error_log(print_r($_POST, true));
-        error_log(print_r(CUSTOM_FIELDS, true));
 
         foreach (CUSTOM_FIELDS as $key => $value) {
             if( ! empty($_POST[$key]) ) {
                 $field = $_POST[$key];
-                error_log('field ' . $field);
                 update_user_meta($user_id, '_' . $key, $field);
             }
         }

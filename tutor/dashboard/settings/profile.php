@@ -120,7 +120,7 @@ $pin = get_user_meta( $uid, '_pin', true);
 		</div>
 	</div>
 
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="" method="post" enctype="multipart/form-data" id="profile_setting_form">
 		<?php
 		$error_list = apply_filters( 'tutor_profile_edit_validation_errors', array() );
 		if ( is_array( $error_list ) && count( $error_list ) ) {
@@ -158,7 +158,7 @@ $pin = get_user_meta( $uid, '_pin', true);
 				<input class="tutor-form-control" type="text" disabled="disabled" value="<?php echo esc_attr( $user->user_login ); ?>">
 			</div>
 
-			<div class="tutor-col-12 tutor-col-sm-6 tutor-col-md-12 tutor-col-lg-6 tutor-mb-32">
+			<div class="tutor-col-12 tutor-col-sm-6 tutor-col-md-12 tutor-col-lg-6 tutor-mb-32" style="display:none">
 				<label class="tutor-form-label tutor-color-secondary">
 					<?php esc_html_e( 'Phone Number', 'tutor' ); ?>
 				</label>
@@ -209,15 +209,46 @@ $pin = get_user_meta( $uid, '_pin', true);
 		</div>
 
 		<div class="tutor-row">
-			<div class="tutor-col-12 tutor-col-sm-6 tutor-col-md-12 tutor-col-lg-6 tutor-mb-32">
-				<div class="tutor-form-group">
-					<label class="tutor-form-label tutor-color-secondary">
-						<?php _e('Phone Number', 'tutor'); ?>
-					</label>
-					<input type="text" class="tutor-form-control" name="phone_no" value="<?php echo get_user_meta($user->ID,'_phone_no',true); ?>">
-				</div>
+		<?php
+			foreach(CUSTOM_FIELDS as $key => $value) {
+				$user_meta = esc_attr( get_user_meta( $user->ID, '_' . $key, true ) );
+				?>
+					<div class="tutor-col-12 tutor-col-sm-6 tutor-col-md-12 tutor-col-lg-6 tutor-mb-32">
+						<label for="<?php esc_html_e($key) ?>" class="tutor-form-label tutor-color-secondary">
+							<?php esc_html_e( $value, 'tutor' ); ?>
+						</label>
+						<?php if($key === 'salutation') : ?>
+							<select name="<?php echo $key ?>" class="tutor-form-select">
+								<option value="mr" <?php echo $user_meta === 'mr' ? 'selected' : '' ?> >Mr.</option>
+								<option value="ms" <?php echo $user_meta === 'ms' ? 'selected' : '' ?> >Ms.</option>
+							</select>
+						<?php elseif($key === 'gender') : ?>
+							<select name="<?php echo $key ?>" class="tutor-form-select">
+								<option value="Male" <?php echo $user_meta === 'Male' ? 'selected' : '' ?> >Male</option>
+								<option value="Female" <?php echo $user_meta === 'Female' ? 'selected' : '' ?> >Female</option>
+								<option value="Prefer not to say" <?php echo $user_meta === 'Prefer not to say' ? 'selected' : '' ?> >Prefer not to say</option>
+							</select>
+						<?php elseif($key === 'course') : ?>
+							<select name="<?php echo $key ?>" class="tutor-form-select">
+								<option value="Abacus" <?php echo $user_meta === 'Abacus' ? 'selected' : '' ?> >Abacus</option>
+								<option value="Vedic Maths" <?php echo $user_meta === 'Vedic Maths' ? 'selected' : '' ?> >Vedic Maths</option>
+								<option value="Handwriting" <?php echo $user_meta === 'Handwriting' ? 'selected' : '' ?> >Handwriting</option>
+								<option value="Phonics" <?php echo $user_meta === 'Phonics' ? 'selected' : '' ?> >Phonics</option>
+								<option value="Art and Craft" <?php echo $user_meta === 'Art and Craft' ? 'selected' : '' ?> >Art and Craft</option>
+								<option value="Robotics" <?php echo $user_meta === 'Robotics' ? 'selected' : '' ?> >Robotics</option>
+								<option value="Calligraphy" <?php echo $user_meta === 'Calligraphy' ? 'selected' : '' ?> >Calligraphy</option>
+								<option value="Rubik's Cube" <?php echo $user_meta === 'Rubik\'s Cube' ? 'selected' : '' ?> >Rubik's Cube</option>
+							</select>
+						<?php elseif($key === 'dob') : ?>
+							<input type="date" name="dob" class="tutor-form-control" value="<?php echo $user_meta; ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
+						<?php else : ?>
+							<input type="text" name="<?php esc_html_e($key) ?>" id="<?php esc_html_e($key) ?>" value="<?php echo $user_meta ?>" class="regular-text tutor-form-control" />
+						<?php endif; ?>
+					</div>
+					<?php
+			}
+			?>
 			</div>
-		</div>
 
 		<?php do_action( 'tutor_profile_edit_input_after', $user ); ?>
 
