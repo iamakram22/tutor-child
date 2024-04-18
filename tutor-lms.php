@@ -44,6 +44,11 @@ function site_setting_dashboard($links)
             'title' => __('Site Settings', 'tutor'),
             'icon' => 'tutor-icon-website'
         );
+        $links['website-admin'] = array(
+			'title' => 'Site Admin',
+			'icon' => 'tutor-icon-gear',
+			'url' => get_dashboard_url()
+		);
     }
     return $links;
 }

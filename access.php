@@ -101,4 +101,4 @@ function wporg_simple_role_caps()
         $tutor->remove_cap($remove, true);
     }
 }
-add_action('init', 'wporg_simple_role_caps', 11);
+add_action('admin_init', 'wporg_simple_role_caps', 11);
