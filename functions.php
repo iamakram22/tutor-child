@@ -229,6 +229,7 @@ function handle_export_users() {
 
 		$csv_data = "ID,Username,Display Name,Email,Enrolled Courses,";
 		foreach (CUSTOM_FIELDS as $key => $value) {
+			$value = str_replace(',', ' ', $value);
 			$csv_data .= $value . ',';
 		}
         // Prepare CSV data
@@ -241,7 +242,8 @@ function handle_export_users() {
 				$enrolled_courses = tutor_utils()->get_enrolled_courses_ids_by_user($user->ID);
 				if(!empty($enrolled_courses) && is_array($enrolled_courses)) {
 					foreach($enrolled_courses as $key => $course_id) {
-						$enrolled_courses[$key] = get_the_title($course_id);
+						$course_title = get_the_title($course_id);
+						$enrolled_courses[$key] = str_replace(',', ' ', $course_title);
 					}
 					$enrolled_courses = implode('; ', $enrolled_courses);
 				} else {
@@ -266,7 +268,6 @@ function handle_export_users() {
         header("Content-Disposition: attachment; filename=users-" . time() . ".csv");
         header("Pragma: no-cache");
         header("Expires: 0");
-		// echo '<pre>' . print_r($csv_data, true) . '</pre>';
         echo $csv_data;
         exit;
     }
