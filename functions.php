@@ -29,6 +29,7 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
+add_filter('woocommerce_checkout_fields', 'prepopulate_billing_fields');
 
 /**
  * Enqueue styles & scripts
@@ -253,8 +254,9 @@ function handle_export_users() {
 			$csv_data .= "$enrolled_courses,";
             // You can add more user meta as needed
 			foreach(CUSTOM_FIELDS as $key => $value) {
-				$csv_data .= get_user_meta($user->ID, '_' . $key, true);
-				$csv_data .= ',';
+				$userdata = get_user_meta($user->ID, '_' . $key, true);
+				$userdata = str_replace(',', ' ', $userdata);
+				$csv_data .= $userdata . ',';
 			}
 			$csv_data .= "\n";
         }
@@ -270,3 +272,20 @@ function handle_export_users() {
     }
 }
 add_action('admin_init', 'handle_export_users');
+
+function prepopulate_billing_fields($fields) {
+    // Get the current user ID
+    $user_id = get_current_user_id();
+
+	if($user_id) {
+		// Get user meta
+		$user_info = get_user_meta($user_id);
+
+		// Set default user details
+		$fields['billing']['billing_first_name']['default'] = $user_info['first_name'][0];
+		$fields['billing']['billing_last_name']['default'] = $user_info['last_name'][0];
+		$fields['billing']['billing_phone']['default'] = $user_info['_phone_no'][0];
+	}
+
+    return $fields;
+}
