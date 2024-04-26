@@ -29,6 +29,8 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
+add_action('admin_menu', 'add_export_users_menu_item');
+add_action('admin_init', 'handle_export_users');
 add_filter('woocommerce_checkout_fields', 'prepopulate_billing_fields');
 
 /**
@@ -195,7 +197,13 @@ function franchise_contact($atts)
  */
 include 'access.php';
 
-function add_export_users_menu_item() {
+/**
+ * Add Export users admin menu
+ *
+ * @return void
+ */
+function add_export_users_menu_item()
+{
     add_submenu_page(
         'users.php',
         'Export Users',
@@ -205,9 +213,14 @@ function add_export_users_menu_item() {
         'export_users_page_callback'
     );
 }
-add_action('admin_menu', 'add_export_users_menu_item');
 
-function export_users_page_callback() {
+/**
+ * Export users admin page
+ *
+ * @return void
+ */
+function export_users_page_callback()
+{
     // Your HTML and form elements for the export page
     echo '<div class="wrap">';
     echo '<h2>Export Users</h2>';
@@ -218,7 +231,13 @@ function export_users_page_callback() {
     echo '</div>';
 }
 
-function handle_export_users() {
+/**
+ * handle user export with custom fields
+ *
+ * @return void
+ */
+function handle_export_users()
+{
     if (isset($_POST['export_users']) && $_POST['export_users'] === 'true') {
         // Query all users
 		$args = array(
@@ -232,6 +251,7 @@ function handle_export_users() {
 			$value = str_replace(',', ' ', $value);
 			$csv_data .= $value . ',';
 		}
+
         // Prepare CSV data
         $csv_data .= "\n";
         foreach ($users as $user) {
@@ -272,9 +292,15 @@ function handle_export_users() {
         exit;
     }
 }
-add_action('admin_init', 'handle_export_users');
 
-function prepopulate_billing_fields($fields) {
+/**
+ * Set default details for checkout fields from profile fields
+ *
+ * @param array $fields
+ * @return array
+ */
+function prepopulate_billing_fields($fields)
+{
     // Get the current user ID
     $user_id = get_current_user_id();
 
