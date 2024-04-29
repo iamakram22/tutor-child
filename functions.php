@@ -252,6 +252,8 @@ function handle_export_users()
 			$csv_data .= $value . ',';
 		}
 
+		$csv_data .= "Order ID,Payment Status,Ref no.";
+
         // Prepare CSV data
         $csv_data .= "\n";
         foreach ($users as $user) {
@@ -274,12 +276,47 @@ function handle_export_users()
 			}
 			
 			$csv_data .= "$enrolled_courses,";
-            // You can add more user meta as needed
+
 			foreach(CUSTOM_FIELDS as $key => $value) {
 				$userdata = get_user_meta($user->ID, '_' . $key, true);
 				$userdata = str_replace(',', ' ', $userdata);
 				$csv_data .= $userdata . ',';
 			}
+
+			// Fetch payment status and transaction number from WooCommerce
+			$order_id = '-';
+			$payment_status = '-';
+			$transaction_number = '-';
+			if (class_exists('WooCommerce')) {
+				$user_orders = wc_get_orders(array(
+					'customer' => $user->ID,
+					'status' => array('completed', 'processing')
+				));
+
+				if (!empty($user_orders)) {
+					$order = $user_orders[0]; // Assuming only one order per user
+					$order_id = $order->get_order_number();
+					$payment_status = $order->get_status();
+					
+					// Extract PayuBiz transaction number from order notes
+					$order_notes = wc_get_order_notes(array(
+						'order_id' => $order_id,
+					));
+
+					foreach ($order_notes as $note) {
+						if (strpos($note->content, 'Ref Number') !== false) {
+							$note_content = $note->content;
+							preg_match('/Ref Number:\s*(\d+)/', $note_content, $matches);
+							if (!empty($matches[1])) {
+								$transaction_number = $matches[1];
+								break; // Stop searching once transaction number is found
+							}
+						}
+					}
+				}
+			}
+			
+			$csv_data .= "$order_id,$payment_status,$transaction_number,";
 			$csv_data .= "\n";
         }
 
