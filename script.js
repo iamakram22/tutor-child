@@ -1,6 +1,15 @@
 (function ($) {
   $(document).ready(function () {
     /**
+     * Hide "Welcome Back" message in login form
+     */
+    const loginForm = $('.tutor-modal-body #tutor-login-form');
+	  if(loginForm.length > 0) {
+		  loginForm.prev('div').css({
+			  'display': 'none'
+		  })
+	  }
+    /**
      * Autoplay video on page load
      */
     $(".autoplay video").each(function () {

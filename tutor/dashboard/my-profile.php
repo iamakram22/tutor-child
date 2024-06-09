@@ -25,22 +25,10 @@ $bio   = get_user_meta( $uid, '_tutor_profile_bio', true );
 
 // Custom Fields
 $phone = get_user_meta( $uid, '_phone_no', true);
-$gender = get_user_meta( $uid, '_gender', true);
-$dob = get_user_meta( $uid, '_dob', true);
-$salutation = get_user_meta( $uid, '_salutation', true);
-$course = get_user_meta( $uid, '_course', true);
-$marital_status = get_user_meta( $uid, '_marital_status', true);
 $father = get_user_meta( $uid, '_father', true);
-$mother = get_user_meta( $uid, '_mother', true);
-$religion = get_user_meta( $uid, '_religion', true);
-$category = get_user_meta( $uid, '_category', true);
-$domicile_state = get_user_meta( $uid, '_domicile_state', true);
-$domicile_district = get_user_meta( $uid, '_domicile_district', true);
-$state_const = get_user_meta( $uid, '_state_const', true);
-$aadhar = get_user_meta( $uid, '_aadhar', true);
 $address = get_user_meta( $uid, '_address', true);
-$pin = get_user_meta( $uid, '_pin', true);
-$reference = get_user_meta( $uid, '_reference', true);
+$school = get_user_meta( $uid, '_school', true);
+$class = get_user_meta( $uid, '_class', true);
 
 $profile_data = array(
 	array( __( 'Registration Date', 'tutor' ), ( $rdate ? tutor_i18n_get_formated_date( tutor_utils()->get_local_time_from_unix( $rdate ) ) : '' ) ),
@@ -51,22 +39,10 @@ $profile_data = array(
 	array( __( 'Skill/Occupation', 'tutor' ), ( $job ? $job : '-' ) ),
 	array( __( 'Biography', 'tutor' ), $bio ? $bio : '-' ),
 	array( __('Phone Number', 'tutor'), $phone ? $phone : '-' ),
-	array( __('Gender', 'tutor'), $gender ? $gender : '-' ),
-	array( __('Date of Birth', 'tutor'), $dob ? $dob : '-' ),
-	array( __('Salutation', 'tutor'), $salutation ? $salutation : '-' ),
-	array( __('Course', 'tutor'), $course ? $course : '-' ),
-	array( __('Marital Status', 'tutor'), $marital_status ? $marital_status : '-' ),
 	array( __('Father\'s Name', 'tutor'), $father ? $father : '-' ),
-	array( __('Mother\'s Name', 'tutor'), $mother ? $mother : '-' ),
-	array( __('Religion', 'tutor'), $religion ? $religion : '-' ),
-	array( __('Category', 'tutor'), $category ? $category : '-' ),
-	array( __('Domicile State', 'tutor'), $domicile_state ? $domicile_state : '-' ),
-	array( __('Domicile District', 'tutor'), $domicile_district ? $domicile_district : '-' ),
-	array( __('State Constituency', 'tutor'), $state_const ? $state_const : '-' ),
-	array( __('Aadhaar Number', 'tutor'), $aadhar ? $aadhar : '-' ),
 	array( __('Address', 'tutor'), $address ? $address : '-' ),
-	array( __('Pin', 'tutor'), $pin ? $pin : '-' ),
-	array( __('IIVA Reference Person Name', 'tutor'), $reference ? $reference : '-'),
+	array( __('School', 'tutor'), $school ? $school : '-' ),
+	array( __('Class and Section', 'tutor'), $class ? $class : '-' ),
 );
 
 ?>

@@ -57,22 +57,10 @@ $max_filesize   = floatval( ini_get( 'upload_max_filesize' ) ) * ( 1024 * 1024 )
 
 // Custom Fields
 $phone = get_user_meta( $uid, '_phone_no', true);
-$gender = get_user_meta( $uid, '_gender', true);
-$dob = get_user_meta( $uid, '_dob', true);
-$salutation = get_user_meta( $uid, '_salutation', true);
-$course = get_user_meta( $uid, '_course', true);
-$marital_status = get_user_meta( $uid, '_marital_status', true);
 $father = get_user_meta( $uid, '_father', true);
-$mother = get_user_meta( $uid, '_mother', true);
-$religion = get_user_meta( $uid, '_religion', true);
-$category = get_user_meta( $uid, '_category', true);
-$domicile_state = get_user_meta( $uid, '_domicile_state', true);
-$domicile_district = get_user_meta( $uid, '_domicile_district', true);
-$state_const = get_user_meta( $uid, '_state_const', true);
-$aadhar = get_user_meta( $uid, '_aadhar', true);
 $address = get_user_meta( $uid, '_address', true);
-$pin = get_user_meta( $uid, '_pin', true);
-$reference = get_user_meta( $uid, '_reference', true);
+$school = get_user_meta( $uid, '_school', true);
+$class = get_user_meta( $uid, '_class', true);
 ?>
 
 <div class="tutor-dashboard-setting-profile tutor-dashboard-content-inner">
@@ -218,33 +206,7 @@ $reference = get_user_meta( $uid, '_reference', true);
 						<label for="<?php esc_html_e($key) ?>" class="tutor-form-label tutor-color-secondary">
 							<?php esc_html_e( $value, 'tutor' ); ?>
 						</label>
-						<?php if($key === 'salutation') : ?>
-							<select name="<?php echo $key ?>" class="tutor-form-select">
-								<option value="mr" <?php echo $user_meta === 'mr' ? 'selected' : '' ?> >Mr.</option>
-								<option value="ms" <?php echo $user_meta === 'ms' ? 'selected' : '' ?> >Ms.</option>
-							</select>
-						<?php elseif($key === 'gender') : ?>
-							<select name="<?php echo $key ?>" class="tutor-form-select">
-								<option value="Male" <?php echo $user_meta === 'Male' ? 'selected' : '' ?> >Male</option>
-								<option value="Female" <?php echo $user_meta === 'Female' ? 'selected' : '' ?> >Female</option>
-								<option value="Prefer not to say" <?php echo $user_meta === 'Prefer not to say' ? 'selected' : '' ?> >Prefer not to say</option>
-							</select>
-						<?php elseif($key === 'course') : ?>
-							<select name="<?php echo $key ?>" class="tutor-form-select">
-								<option value="Abacus" <?php echo $user_meta === 'Abacus' ? 'selected' : '' ?> >Abacus</option>
-								<option value="Vedic Maths" <?php echo $user_meta === 'Vedic Maths' ? 'selected' : '' ?> >Vedic Maths</option>
-								<option value="Handwriting" <?php echo $user_meta === 'Handwriting' ? 'selected' : '' ?> >Handwriting</option>
-								<option value="Phonics" <?php echo $user_meta === 'Phonics' ? 'selected' : '' ?> >Phonics</option>
-								<option value="Art and Craft" <?php echo $user_meta === 'Art and Craft' ? 'selected' : '' ?> >Art and Craft</option>
-								<option value="Robotics" <?php echo $user_meta === 'Robotics' ? 'selected' : '' ?> >Robotics</option>
-								<option value="Calligraphy" <?php echo $user_meta === 'Calligraphy' ? 'selected' : '' ?> >Calligraphy</option>
-								<option value="Rubik's Cube" <?php echo $user_meta === 'Rubik\'s Cube' ? 'selected' : '' ?> >Rubik's Cube</option>
-							</select>
-						<?php elseif($key === 'dob') : ?>
-							<input type="date" name="dob" class="tutor-form-control" value="<?php echo $user_meta; ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
-						<?php else : ?>
 							<input type="text" name="<?php esc_html_e($key) ?>" id="<?php esc_html_e($key) ?>" value="<?php echo $user_meta ?>" class="regular-text tutor-form-control" />
-						<?php endif; ?>
 					</div>
 					<?php
 			}

@@ -4,23 +4,11 @@
  */
 define('CLIENT', unserialize(get_option('client_data', true)));
 define('CUSTOM_FIELDS', array(
-    'salutation' => 'Salutation',
     'phone_no' => 'Phone Number',
-    'gender' => 'Gender',
-    'dob' => 'Date of Birth',
-    'course' => 'Course',
-    'marital_status' => 'Marital Status',
     'father' => 'Father\'s Name',
-    'mother' => 'Mother\'s Name',
-    'religion' => 'Religion',
-    'category' => 'Category',
-    'domicile_state' => 'Domicile State',
-    'domicile_district' => 'Domicile district',
-    'state_const' => 'State constituency',
-    'aadhar' => 'Aadhar number',
     'address' => 'Permanent address',
-    'pin' => 'Area pin code',
-	'reference' => 'IIVA Reference Person Name'
+	'school' => 'School Name',
+	'class' => 'Class and Section'
 ));
 
 /**
@@ -220,6 +208,7 @@ function prepopulate_billing_fields($fields)
 		$fields['billing']['billing_first_name']['default'] = $user_info['first_name'][0];
 		$fields['billing']['billing_last_name']['default'] = $user_info['last_name'][0];
 		$fields['billing']['billing_phone']['default'] = $user_info['_phone_no'][0];
+		$fields['billing']['billing_address_1']['default'] = $user_info['_address'][0];
 	}
 
     return $fields;

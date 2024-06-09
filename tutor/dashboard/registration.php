@@ -52,41 +52,25 @@
 					</ul>
 				</div>
 			<?php endif; ?>
-			
-			<div class="tutor-form-row">
-				<div class="tutor-form-group">
-					<?php esc_html_e( 'Salutation', 'tutor' ); ?>
-						<div class="d-flex">
-						<label class="pr-2">
-							<input type="radio" name="salutation" value="mr" required>
-							Mr.
-						</label>
-						<label>
-							<input type="radio" name="salutation" value="ms" required>
-							Ms.
-						</label>
-					</div>
-				</div>
-			</div>
 
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php esc_html_e( 'First Name', 'tutor' ); ?>
+							<?php esc_html_e( 'First Name', 'tutor' ); ?> <span class="text-danger">*</span>
 						</label>
 
-						<input type="text" name="first_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'first_name' ) ); ?>" placeholder="<?php esc_attr_e( 'First Name', 'tutor' ); ?>" required autocomplete="given-name">
+						<input type="text" name="first_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'first_name' ) ); ?>" required autocomplete="given-name">
 					</div>
 				</div>
 
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php esc_html_e( 'Last Name', 'tutor' ); ?>
+							<?php esc_html_e( 'Last Name', 'tutor' ); ?> <span class="text-danger">*</span>
 						</label>
 
-						<input type="text" name="last_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'last_name' ) ); ?>" placeholder="<?php esc_attr_e( 'Last Name', 'tutor' ); ?>" required autocomplete="family-name">
+						<input type="text" name="last_name" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'last_name' ) ); ?>" required autocomplete="family-name">
 					</div>
 				</div>
 
@@ -96,20 +80,20 @@
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php esc_html_e( 'User Name', 'tutor' ); ?>
+							<?php esc_html_e( 'Username', 'tutor' ); ?> <span class="text-danger">*</span>
 						</label>
 
-						<input type="text" name="user_login" class="tutor_user_name tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'user_login' ) ); ?>" placeholder="<?php esc_html_e( 'User Name', 'tutor' ); ?>" required autocomplete="username">
+						<input type="text" name="user_login" class="tutor_user_name tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'user_login' ) ); ?>" required autocomplete="username">
 					</div>
 				</div>
 
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php esc_html_e( 'E-Mail', 'tutor' ); ?>
+							<?php esc_html_e( 'E-Mail', 'tutor' ); ?> <span class="text-danger">*</span>
 						</label>
 
-						<input type="text" name="email" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'email' ) ); ?>" placeholder="<?php esc_html_e( 'E-Mail', 'tutor' ); ?>" required autocomplete="email">
+						<input type="text" name="email" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'email' ) ); ?>" required autocomplete="email">
 					</div>
 				</div>
 
@@ -121,10 +105,10 @@
 						<div class="tutor-password-strength-checker">
 							<div class="tutor-password-field">
 								<label class="tutor-form-label tutor-color-secondary">
-									<?php esc_html_e( 'Password', 'tutor' ); ?>
+									<?php esc_html_e( 'Password', 'tutor' ); ?> <span class="text-danger">*</span>
 								</label>
 
-								<input class="password-checker" id="tutor-new-password" type="password" name="password" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password' ) ); ?>" placeholder="<?php esc_html_e( 'Password', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
+								<input class="password-checker" id="tutor-new-password" type="password" name="password" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password' ) ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
 								<span class="show-hide-btn"></span>
 							</div>
 
@@ -143,12 +127,12 @@
 				<div class="tutor-form-col-6">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php esc_html_e( 'Password confirmation', 'tutor' ); ?>
+							<?php esc_html_e( 'Password confirmation', 'tutor' ); ?> <span class="text-danger">*</span>
 						</label>
 
 						<div class="tutor-form-wrap">
 							<span class="tutor-validation-icon tutor-icon-mark tutor-color-success tutor-form-icon tutor-form-icon-reverse" style="display: none;"></span>
-							<input type="password" name="password_confirmation" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password_confirmation' ) ); ?>" placeholder="<?php esc_html_e( 'Password Confirmation', 'tutor' ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
+							<input type="password" name="password_confirmation" class="tutor-form-control" value="<?php echo esc_attr( tutor_utils()->input_old( 'password_confirmation' ) ); ?>" required autocomplete="new-password" style="margin-bottom: 0;">
 						</div>
 					</div>
 				</div>
@@ -158,10 +142,10 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Phone Number', 'tutor'); ?>
+							<?php _e('Phone Number', 'tutor'); ?> <span class="text-danger">*</span>
 						</label>
 
-						<input type="text" name="phone_no" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('phone_no'); ?>" placeholder="<?php _e('Phone Number', 'tutor'); ?>">
+						<input type="text" name="phone_no" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('phone_no'); ?>">
 					</div>
 				</div>
 			</div>
@@ -170,13 +154,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Gender', 'tutor'); ?>
+							<?php _e('Father\'s name', 'tutor'); ?> <span class="text-danger">*</span>
 						</label>
-						<select name="gender" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('gender'); ?>">
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-							<option value="Prefer not to say">Prefer not to say</option>
-						</select>
+						<input type="text" name="father" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('father'); ?>" required>
 					</div>
 				</div>
 			</div>
@@ -185,154 +165,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Date of Birth', 'tutor'); ?>
+							<?php _e('Address', 'tutor'); ?> <span class="text-danger">*</span>
 						</label>
-						<input type="date" name="dob" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('dob'); ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Course', 'tutor'); ?>
-						</label>
-						<select name="course" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('course'); ?>">
-							<option value="Abacus">Abacus</option>
-							<option value="Vedic Maths">Vedic Maths</option>
-							<option value="Handwriting">Handwriting</option>
-							<option value="Phonics">Phonics</option>
-							<option value="Art and Craft">Art and Craft</option>
-							<option value="Robotics">Robotics</option>
-							<option value="Calligraphy">Calligraphy</option>
-							<option value="Rubik's Cube">Rubik's Cube</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Marital status', 'tutor'); ?>
-						</label>
-						<select name="marital_status" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
-							<option value="Married">Married</option>
-							<option value="Single/Unmarried">Single/Unmarried</option>
-							<option value="Divorced">Divorced</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Father\'s name', 'tutor'); ?>
-						</label>
-						<input type="text" name="father" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('father'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Mother\'s name', 'tutor'); ?>
-						</label>
-						<input type="text" name="mother" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('mother'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Religion', 'tutor'); ?>
-						</label>
-						<input type="text" name="religion" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('religion'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Category', 'tutor'); ?>
-						</label>
-						<input type="text" name="category" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('category'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Domicile state', 'tutor'); ?>
-						</label>
-						<input type="text" name="domicile_state" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_state'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Domicile district', 'tutor'); ?>
-						</label>
-						<input type="text" name="domicile_district" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_district'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('State constituency', 'tutor'); ?>
-						</label>
-						<input type="text" name="state_const" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('state_const'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Aadhar number', 'tutor'); ?>
-						</label>
-						<input type="text" inputmode="numeric" name="aadhar" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('aadhar'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Permanent address', 'tutor'); ?>
-						</label>
-						<input type="text" name="address" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('address'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Area pin code', 'tutor'); ?>
-						</label>
-						<input type="number" name="pin" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('pin'); ?>">
+						<input type="text" name="address" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('address'); ?>" required>
 					</div>
 				</div>
 			</div>
@@ -341,9 +176,20 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('IIVA Reference Person Name', 'tutor'); ?>
+							<?php _e('School Name', 'tutor'); ?> <span class="text-danger">*</span>
 						</label>
-						<input type="text" name="reference" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('reference'); ?>">
+						<input type="text" name="school" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('school'); ?>" required>
+					</div>
+				</div>
+			</div>
+			
+			<div class="tutor-form-row">
+				<div class="tutor-form-col-12">
+					<div class="tutor-form-group">
+						<label class="tutor-form-label tutor-color-secondary">
+							<?php _e('Class and Section', 'tutor'); ?> <span class="text-danger">*</span>
+						</label>
+						<input type="text" name="class" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('class'); ?>" required>
 					</div>
 				</div>
 			</div>
