@@ -3,6 +3,9 @@ Child theme for Tutor Starter theme
 
 ## Changelog
 
+== 2.5.0 ==
+- Export user functionalities with custom fields and WC order status
+
 == 2.0.0 ==
 - Dashboard templates override
     - My profile

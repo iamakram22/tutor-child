@@ -30,6 +30,8 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
+add_action('admin_menu', 'add_export_users_menu_item');
+add_action('admin_init', 'handle_export_users');
 add_filter('woocommerce_checkout_fields', 'prepopulate_billing_fields');
 
 /**
@@ -197,9 +199,137 @@ function franchise_contact($atts)
 include 'access.php';
 
 /**
- * Include export report
+ * Add Export users admin menu
+ *
+ * @return void
  */
-include 'export-report.php';
+function add_export_users_menu_item()
+{
+    add_submenu_page(
+        'users.php',
+        'Export Users',
+        'Export Users',
+        'manage_options',
+        'export_users_page',
+        'export_users_page_callback'
+    );
+}
+
+/**
+ * Export users admin page
+ *
+ * @return void
+ */
+function export_users_page_callback()
+{
+    // Your HTML and form elements for the export page
+    echo '<div class="wrap">';
+    echo '<h2>Export Users</h2>';
+    echo '<form method="post" action="">';
+    echo '<input type="hidden" name="export_users" value="true" />';
+    echo '<input type="submit" value="Export Users" class="button-primary" />';
+    echo '</form>';
+    echo '</div>';
+}
+
+/**
+ * handle user export with custom fields
+ *
+ * @return void
+ */
+function handle_export_users()
+{
+    if (isset($_POST['export_users']) && $_POST['export_users'] === 'true') {
+        // Query all users
+		$args = array(
+            'role'         => 'subscriber',
+            'number'       => -1,
+        );
+        $users = get_users($args);
+
+		$csv_data = "ID,Username,Display Name,Email,Enrolled Courses,";
+		foreach (CUSTOM_FIELDS as $key => $value) {
+			$value = str_replace(',', ' ', $value);
+			$csv_data .= $value . ',';
+		}
+
+		$csv_data .= "Order ID,Payment Status,Ref no.";
+
+        // Prepare CSV data
+        $csv_data .= "\n";
+        foreach ($users as $user) {
+			$csv_data .= "{$user->ID},{$user->user_login},{$user->display_name},{$user->user_email},";
+
+			$enrolled_courses = array();
+			if ( function_exists('tutor_utils') ) {
+				$enrolled_courses = tutor_utils()->get_enrolled_courses_ids_by_user($user->ID);
+				if(!empty($enrolled_courses) && is_array($enrolled_courses)) {
+					foreach($enrolled_courses as $key => $course_id) {
+						$course_title = get_the_title($course_id);
+						$enrolled_courses[$key] = str_replace(',', ' ', $course_title);
+					}
+					$enrolled_courses = implode('; ', $enrolled_courses);
+				} else {
+					$enrolled_courses = '-';
+				}
+            } else {
+				$enrolled_courses = '-';
+			}
+			
+			$csv_data .= "$enrolled_courses,";
+
+			foreach(CUSTOM_FIELDS as $key => $value) {
+				$userdata = get_user_meta($user->ID, '_' . $key, true);
+				$userdata = str_replace(',', ' ', $userdata);
+				$csv_data .= $userdata . ',';
+			}
+
+			// Fetch payment status and transaction number from WooCommerce
+			$order_id = '-';
+			$payment_status = '-';
+			$transaction_number = '-';
+			if (class_exists('WooCommerce')) {
+				$user_orders = wc_get_orders(array(
+					'customer' => $user->ID,
+					'status' => array('completed', 'processing')
+				));
+
+				if (!empty($user_orders)) {
+					$order = $user_orders[0]; // Assuming only one order per user
+					$order_id = $order->get_order_number();
+					$payment_status = $order->get_status();
+					
+					// Extract PayuBiz transaction number from order notes
+					$order_notes = wc_get_order_notes(array(
+						'order_id' => $order_id,
+					));
+
+					foreach ($order_notes as $note) {
+						if (strpos($note->content, 'Ref Number') !== false) {
+							$note_content = $note->content;
+							preg_match('/Ref Number:\s*(\d+)/', $note_content, $matches);
+							if (!empty($matches[1])) {
+								$transaction_number = $matches[1];
+								break; // Stop searching once transaction number is found
+							}
+						}
+					}
+				}
+			}
+			
+			$csv_data .= "$order_id,$payment_status,$transaction_number,";
+			$csv_data .= "\n";
+        }
+
+        // Output CSV file
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=users-" . time() . ".csv");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        echo $csv_data;
+        exit;
+    }
+}
 
 /**
  * Set default details for checkout fields from profile fields
