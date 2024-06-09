@@ -3,6 +3,10 @@ Child theme for Tutor Starter theme
 
 ## Changelog
 
+== 3.0.0 ==
+- Change export report options
+- Added filter options to export report
+
 == 2.5.0 ==
 - Export user functionalities with custom fields and WC order status
 
