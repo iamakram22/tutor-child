@@ -134,7 +134,7 @@ function handle_export_report()
 			$csv_data_header .= $value . ',';
 		}
 
-		$csv_data_header .= "Order IDs,Payment Statuses,Transaction Numbers,Transaction dates,Total payment\n";
+		$csv_data_header .= "Order IDs,Payment Statuses,Transaction Numbers,Transaction dates,Payments,Total Amount\n";
 
         // Query all users
 		$args = array(
