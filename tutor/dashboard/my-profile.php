@@ -40,6 +40,7 @@ $state_const = get_user_meta( $uid, '_state_const', true);
 $aadhar = get_user_meta( $uid, '_aadhar', true);
 $address = get_user_meta( $uid, '_address', true);
 $pin = get_user_meta( $uid, '_pin', true);
+$reference = get_user_meta( $uid, '_reference', true);
 
 $profile_data = array(
 	array( __( 'Registration Date', 'tutor' ), ( $rdate ? tutor_i18n_get_formated_date( tutor_utils()->get_local_time_from_unix( $rdate ) ) : '' ) ),
@@ -65,6 +66,7 @@ $profile_data = array(
 	array( __('Aadhaar Number', 'tutor'), $aadhar ? $aadhar : '-' ),
 	array( __('Address', 'tutor'), $address ? $address : '-' ),
 	array( __('Pin', 'tutor'), $pin ? $pin : '-' ),
+	array( __('IIVA Reference Person Name', 'tutor'), $reference ? $reference : '-'),
 );
 
 ?>

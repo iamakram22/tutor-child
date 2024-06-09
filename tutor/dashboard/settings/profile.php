@@ -72,6 +72,7 @@ $state_const = get_user_meta( $uid, '_state_const', true);
 $aadhar = get_user_meta( $uid, '_aadhar', true);
 $address = get_user_meta( $uid, '_address', true);
 $pin = get_user_meta( $uid, '_pin', true);
+$reference = get_user_meta( $uid, '_reference', true);
 ?>
 
 <div class="tutor-dashboard-setting-profile tutor-dashboard-content-inner">

@@ -336,6 +336,17 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="tutor-form-row">
+				<div class="tutor-form-col-12">
+					<div class="tutor-form-group">
+						<label class="tutor-form-label tutor-color-secondary">
+							<?php _e('IIVA Reference Person Name', 'tutor'); ?>
+						</label>
+						<input type="text" name="reference" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('reference'); ?>">
+					</div>
+				</div>
+			</div>
 
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-12">
