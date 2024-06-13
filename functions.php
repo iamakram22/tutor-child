@@ -3,6 +3,25 @@
  * Constant for handling site setting form
  */
 define('CLIENT', unserialize(get_option('client_data', true)));
+define('CUSTOM_FIELDS', array(
+    'salutation' => 'Salutation',
+    'phone_no' => 'Phone Number',
+    'gender' => 'Gender',
+    'dob' => 'Date of Birth',
+    'course' => 'Course',
+    'marital_status' => 'Marital Status',
+    'father' => 'Father\'s Name',
+    'mother' => 'Mother\'s Name',
+    'religion' => 'Religion',
+    'category' => 'Category',
+    'domicile_state' => 'Domicile State',
+    'domicile_district' => 'Domicile district',
+    'state_const' => 'State constituency',
+    'aadhar' => 'Aadhar number',
+    'address' => 'Permanent address',
+    'pin' => 'Area pin code',
+	'reference' => 'IIVA Reference Person Name'
+));
 
 /**
  * Actions & Filters
@@ -11,7 +30,7 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
-add_action('wp_ajax_nopriv_client_editing_website', 'client_editing_website_function');
+add_filter('woocommerce_checkout_fields', 'prepopulate_billing_fields');
 
 /**
  * Enqueue styles & scripts
@@ -20,7 +39,8 @@ add_action('wp_ajax_nopriv_client_editing_website', 'client_editing_website_func
  */
 function child_enqueue_styles()
 {
-	wp_register_style('bootstrap', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.css', array(), time(), 'all');
+	wp_register_style('bootstrap-style', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.css', array(), time(), 'all');
+	wp_register_script('bootstrap-script', get_stylesheet_directory_uri() . '/vendor/bootstrap.min.js', array('jquery'), time(), true);
 	wp_enqueue_style('tutor-child', get_stylesheet_directory_uri() . '/style.css', array(), time(), 'all');
 
 	wp_enqueue_media(); // for accessing WP media
@@ -38,6 +58,7 @@ function child_enqueue_styles()
  * Include Tutor LMS functions
  */
 include('tutor-lms.php');
+include('tutor-registration.php');
 
 /**
  * Handle Site setting form request
@@ -174,3 +195,32 @@ function franchise_contact($atts)
  * Include tutor access capabilities
  */
 include 'access.php';
+
+/**
+ * Include export report
+ */
+include 'export-report.php';
+
+/**
+ * Set default details for checkout fields from profile fields
+ *
+ * @param array $fields
+ * @return array
+ */
+function prepopulate_billing_fields($fields)
+{
+    // Get the current user ID
+    $user_id = get_current_user_id();
+
+	if($user_id) {
+		// Get user meta
+		$user_info = get_user_meta($user_id);
+
+		// Set default user details
+		$fields['billing']['billing_first_name']['default'] = $user_info['first_name'][0];
+		$fields['billing']['billing_last_name']['default'] = $user_info['last_name'][0];
+		$fields['billing']['billing_phone']['default'] = $user_info['_phone_no'][0];
+	}
+
+    return $fields;
+}
