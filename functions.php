@@ -31,6 +31,7 @@ add_shortcode('franchise_branding', 'franchise_branding');
 add_shortcode('franchise_contact', 'franchise_contact');
 add_action('wp_ajax_client_editing_website', 'client_editing_website_function');
 add_filter('woocommerce_checkout_fields', 'prepopulate_billing_fields');
+add_action('admin_enqueue_scripts', 'admin_enqueue_scripts');
 
 /**
  * Enqueue styles & scripts
@@ -50,6 +51,23 @@ function child_enqueue_styles()
 		'myAjax',
 		array(
 			'ajax_url' => admin_url('admin-ajax.php')
+		)
+	);
+}
+
+/**
+ * Enqueue admin scripts & styles
+ *
+ * @return void
+ */
+function admin_enqueue_scripts() {
+	wp_enqueue_style('custom-admin-style', get_stylesheet_directory_uri() . '/admin.css', array(), time(), 'all');
+	wp_enqueue_script('custom-admin-script', get_stylesheet_directory_uri() . '/admin.js', array('jquery'), time(), true);
+	wp_localize_script(
+		'custom-admin-script',
+		'adminScript',
+		array(
+			'userId' => get_current_user_id(),
 		)
 	);
 }
