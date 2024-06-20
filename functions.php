@@ -56,6 +56,8 @@ function client_editing_website_function()
 		$data = $_POST['data'];
 
 		if (!empty($data)) {
+			$data['last_update'] = time();
+			update_option('blogname', $data['client_name']);
 			$data = serialize($data);
 			update_option('client_data', $data);
 			$msg = __('Successful, please refresh to see changes', 'tutor');
