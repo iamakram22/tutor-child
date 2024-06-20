@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 /**
  * enqueue bootstrap
  */
-wp_enqueue_style('bootstrap');
+wp_enqueue_style('bootstrap-style');
 
 /**
  * Show only if Tutor
@@ -26,17 +26,26 @@ $phone = CLIENT['client_phone'];
 $email = CLIENT['client_email'];
 $address = CLIENT['client_address'];
 $desc = CLIENT['client_desc'];
-ob_start();
 ?>
 <div class="container client_form">
 	<form type="post" id="site_editing_form" enctype="multipart/form-data">
 		<?php wp_nonce_field('client_editing', 'client_editing_nonce'); ?>
 		<div class="input-group mb-3">
-			<label class="input-group-text col-8 gap-1" for="open_media_gallery">Website Logo : <span id="img_name"
-					class="text-truncate"></span></label>
+			<label class="input-group-text col-8 gap-1" for="open_media_gallery">
+				Website Logo : <span id="img_name" class="text-truncate">
+			</label>
 			<input type="hidden" id="client_logo" name="selected_image_url" value="<?php echo esc_html($logo) ?>"
 				readonly>
 			<button id="open_media_gallery" class="btn btn-primary form-control col-4">Upload Logo</button>
+		</div>
+
+		<div class="input-group mb-3">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="remove_image">
+				<label class="form-check-label" for="remove_image">
+					Remove the logo
+				</label>
+			</div>
 		</div>
 
 		<div class="input-group mb-3">

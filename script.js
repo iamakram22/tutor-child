@@ -47,7 +47,7 @@
       event.preventDefault();
       // Get form data
       let nonce = $(this).find("#client_editing_nonce").val();
-      let clientLogo = $(this).find("#client_logo").val();
+      let clientLogo = $(this).find('#remove_image').is(':checked') ? '' :$(this).find("#client_logo").val();
       let clientName = $(this).find("#client_name").val();
       let clientPhone = $(this).find("#client_phone").val();
       let clientEmail = $(this).find("#client_email").val();
@@ -92,11 +92,6 @@
     courseList.each(function () {
       $(this).css({ "background-color": bgColors[startColor] + "40" });
       startColor = (startColor + 1) % bgColors.length;
-    });
-
-    const courseCatMeta = $('.etlms-course-category-meta.tutor-meta-key');
-    courseCatMeta.each(function() {
-      $(this).text('for');
     });
 
   }); // doc.ready

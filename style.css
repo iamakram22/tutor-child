@@ -90,7 +90,6 @@ body:not(.logged-in) .tutor-course-card .cart-text {
 .text-danger {
 	color: #F00;
 }
-
 section.footer-widgets .container {
   padding-bottom: 30px;
 }
