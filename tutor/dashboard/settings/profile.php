@@ -57,21 +57,21 @@ $max_filesize   = floatval( ini_get( 'upload_max_filesize' ) ) * ( 1024 * 1024 )
 
 // Custom Fields
 $phone = get_user_meta( $uid, '_phone_no', true);
-$gender = get_user_meta( $uid, '_gender', true);
-$dob = get_user_meta( $uid, '_dob', true);
-$salutation = get_user_meta( $uid, '_salutation', true);
-$course = get_user_meta( $uid, '_course', true);
-$marital_status = get_user_meta( $uid, '_marital_status', true);
-$father = get_user_meta( $uid, '_father', true);
-$mother = get_user_meta( $uid, '_mother', true);
-$religion = get_user_meta( $uid, '_religion', true);
-$category = get_user_meta( $uid, '_category', true);
-$domicile_state = get_user_meta( $uid, '_domicile_state', true);
-$domicile_district = get_user_meta( $uid, '_domicile_district', true);
-$state_const = get_user_meta( $uid, '_state_const', true);
-$aadhar = get_user_meta( $uid, '_aadhar', true);
+// $gender = get_user_meta( $uid, '_gender', true);
+// $dob = get_user_meta( $uid, '_dob', true);
+// $salutation = get_user_meta( $uid, '_salutation', true);
+// $course = get_user_meta( $uid, '_course', true);
+// $marital_status = get_user_meta( $uid, '_marital_status', true);
+// $father = get_user_meta( $uid, '_father', true);
+// $mother = get_user_meta( $uid, '_mother', true);
+// $religion = get_user_meta( $uid, '_religion', true);
+// $category = get_user_meta( $uid, '_category', true);
+// $domicile_state = get_user_meta( $uid, '_domicile_state', true);
+// $domicile_district = get_user_meta( $uid, '_domicile_district', true);
 $address = get_user_meta( $uid, '_address', true);
+$state_const = get_user_meta( $uid, '_state_const', true);
 $pin = get_user_meta( $uid, '_pin', true);
+// $aadhar = get_user_meta( $uid, '_aadhar', true);
 $reference = get_user_meta( $uid, '_reference', true);
 ?>
 

@@ -52,22 +52,10 @@
 					</ul>
 				</div>
 			<?php endif; ?>
-			
-			<div class="tutor-form-row">
-				<div class="tutor-form-group">
-					<?php esc_html_e( 'Salutation', 'tutor' ); ?>
-						<div class="d-flex">
-						<label class="pr-2">
-							<input type="radio" name="salutation" value="mr" required>
-							Mr.
-						</label>
-						<label>
-							<input type="radio" name="salutation" value="ms" required>
-							Ms.
-						</label>
-					</div>
-				</div>
-			</div>
+
+			<label class="tutor-form-label tutor-color-secondary">
+				<strong><?php _e( 'Full Name (as mentioned on Aadhaar Card for the certificate)', 'tutor' ); ?></strong>
+			</label>
 
 			<div class="tutor-form-row">
 				<div class="tutor-form-col-6">
@@ -158,10 +146,10 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Phone Number', 'tutor'); ?>
+							<?php _e('WhatsApp Mobile Number', 'tutor'); ?>
 						</label>
 
-						<input type="text" name="phone_no" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('phone_no'); ?>" placeholder="<?php _e('Phone Number', 'tutor'); ?>">
+						<input type="text" name="phone_no" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('phone_no'); ?>" placeholder="<?php _e('WhatsApp Phone Number', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>
@@ -170,13 +158,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Gender', 'tutor'); ?>
+							<?php _e('Address', 'tutor'); ?>
 						</label>
-						<select name="gender" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('gender'); ?>">
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-							<option value="Prefer not to say">Prefer not to say</option>
-						</select>
+						<input type="text" name="address" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('address'); ?>" placeholder="<?php _e('Address', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>
@@ -185,9 +169,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Date of Birth', 'tutor'); ?>
+							<?php _e('State', 'tutor'); ?>
 						</label>
-						<input type="date" name="dob" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('dob'); ?>" max="<?php echo date('Y-m-d', strtotime('-1 days')); ?>" required>
+						<input type="text" name="state_const" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('state_const'); ?>" placeholder="<?php _e('State', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>
@@ -196,143 +180,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Course', 'tutor'); ?>
+							<?php _e('Pincode', 'tutor'); ?>
 						</label>
-						<select name="course" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('course'); ?>">
-							<option value="Abacus">Abacus</option>
-							<option value="Vedic Maths">Vedic Maths</option>
-							<option value="Handwriting">Handwriting</option>
-							<option value="Phonics">Phonics</option>
-							<option value="Art and Craft">Art and Craft</option>
-							<option value="Robotics">Robotics</option>
-							<option value="Calligraphy">Calligraphy</option>
-							<option value="Rubik's Cube">Rubik's Cube</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Marital status', 'tutor'); ?>
-						</label>
-						<select name="marital_status" class="tutor-form-select tutor-form-control" value="<?php echo tutor_utils()->input_old('marital_status'); ?>">
-							<option value="Married">Married</option>
-							<option value="Single/Unmarried">Single/Unmarried</option>
-							<option value="Divorced">Divorced</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Father\'s name', 'tutor'); ?>
-						</label>
-						<input type="text" name="father" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('father'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Mother\'s name', 'tutor'); ?>
-						</label>
-						<input type="text" name="mother" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('mother'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Religion', 'tutor'); ?>
-						</label>
-						<input type="text" name="religion" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('religion'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Category', 'tutor'); ?>
-						</label>
-						<input type="text" name="category" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('category'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Domicile state', 'tutor'); ?>
-						</label>
-						<input type="text" name="domicile_state" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_state'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Domicile district', 'tutor'); ?>
-						</label>
-						<input type="text" name="domicile_district" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('domicile_district'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('State constituency', 'tutor'); ?>
-						</label>
-						<input type="text" name="state_const" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('state_const'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Aadhar number', 'tutor'); ?>
-						</label>
-						<input type="text" inputmode="numeric" name="aadhar" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('aadhar'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Permanent address', 'tutor'); ?>
-						</label>
-						<input type="text" name="address" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('address'); ?>">
-					</div>
-				</div>
-			</div>
-
-			<div class="tutor-form-row">
-				<div class="tutor-form-col-12">
-					<div class="tutor-form-group">
-						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('Area pin code', 'tutor'); ?>
-						</label>
-						<input type="number" name="pin" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('pin'); ?>">
+						<input type="number" name="pin" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('pin'); ?>" placeholder="<?php _e('Pincode', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>
@@ -341,9 +191,9 @@
 				<div class="tutor-form-col-12">
 					<div class="tutor-form-group">
 						<label class="tutor-form-label tutor-color-secondary">
-							<?php _e('IIVA Reference Person Name', 'tutor'); ?>
+							<?php _e('IIVA Reference Person Name', 'tutor'); ?>
 						</label>
-						<input type="text" name="reference" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('reference'); ?>">
+						<input type="text" name="reference" class="tutor-form-control" value="<?php echo tutor_utils()->input_old('reference'); ?>" placeholder="<?php _e('IIVA Person Name', 'tutor'); ?>">
 					</div>
 				</div>
 			</div>

@@ -4,22 +4,10 @@
  */
 define('CLIENT', unserialize(get_option('client_data', true)));
 define('CUSTOM_FIELDS', array(
-    'salutation' => 'Salutation',
-    'phone_no' => 'Phone Number',
-    'gender' => 'Gender',
-    'dob' => 'Date of Birth',
-    'course' => 'Course',
-    'marital_status' => 'Marital Status',
-    'father' => 'Father\'s Name',
-    'mother' => 'Mother\'s Name',
-    'religion' => 'Religion',
-    'category' => 'Category',
-    'domicile_state' => 'Domicile State',
-    'domicile_district' => 'Domicile district',
-    'state_const' => 'State constituency',
-    'aadhar' => 'Aadhar number',
-    'address' => 'Permanent address',
-    'pin' => 'Area pin code',
+    'phone_no' => 'WhatsApp Mobile Number',
+    'address' => 'Address',
+    'state_const' => 'State',
+    'pin' => 'Pincode',
 	'reference' => 'IIVA Reference Person Name'
 ));
 
