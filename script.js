@@ -8,37 +8,52 @@
     });
 
     /**
-     * Open WP media on site setting form
+     * Open WP media gallery and handle the selected image
+     *
+     * @param {string} triggerSelector - The selector for the element that triggers the media gallery.
+     * @param {string} inputSelector - The selector for the input field to update with the image URL.
+     * @param {string} displaySelector - The selector for the element to display the image name.
+     * @param {string} title - The title for the media uploader.
+     * @param {string} buttonText - The text for the upload button.
      */
-    $("#open_media_gallery").on("click", function (e) {
-      e.preventDefault();
+    function openMediaGallery(triggerSelector, inputSelector, displaySelector, title = "Select Image", buttonText = "Upload") {
+      $(triggerSelector).on("click", function (e) {
+        e.preventDefault();
 
-      // Create a new media frame
-      let mediaUploader = wp.media({
-        title: "Select Image",
-        button: {
-          text: "Upload",
-        },
-        multiple: false,
-        library: { type: "image" },
+        // Create a new media frame
+        let mediaUploader = wp.media({
+          title: title,
+          button: {
+            text: buttonText,
+          },
+          multiple: false,
+          library: { type: "image" },
+        });
+
+        // Open media uploader
+        mediaUploader.on("select", function () {
+          let attachment = mediaUploader
+            .state()
+            .get("selection")
+            .first()
+            .toJSON();
+          let imageUrl = attachment.url;
+
+          // Update the input field with the selected image URL
+          $(inputSelector).val(imageUrl);
+          $(displaySelector).text(attachment.filename);
+        });
+
+        mediaUploader.open();
       });
+    }
 
-      // Open media uploader
-      mediaUploader.on("select", function () {
-        let attachment = mediaUploader
-          .state()
-          .get("selection")
-          .first()
-          .toJSON();
-        let imageUrl = attachment.url;
-
-        // Update the input field with the selected image URL
-        $("#client_logo").val(imageUrl);
-        $("#img_name").text(attachment.filename);
-      });
-
-      mediaUploader.open();
-    }); // wp.media
+    // Open media selector on client logo
+    openMediaGallery(
+      "#open_media_gallery",
+      "#client_logo",
+      "#img_name",
+    );
 
     /**
      * Send site setting form AJAX
@@ -47,7 +62,9 @@
       event.preventDefault();
       // Get form data
       let nonce = $(this).find("#client_editing_nonce").val();
-      let clientLogo = $(this).find('#remove_image').is(':checked') ? '' :$(this).find("#client_logo").val();
+      let clientLogo = $(this).find("#remove_image").is(":checked")
+        ? ""
+        : $(this).find("#client_logo").val();
       let clientName = $(this).find("#client_name").val();
       let clientPhone = $(this).find("#client_phone").val();
       let clientEmail = $(this).find("#client_email").val();
