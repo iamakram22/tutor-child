@@ -80,6 +80,10 @@ function client_editing_website_function()
  */
 function franchise_branding($atts)
 {
+
+	// Return nothing if client_data is not set
+	if(!CLIENT) return false;
+
 	$logo = CLIENT['client_logo'];
 	$name = CLIENT['client_name'];
 	$desc = CLIENT['client_desc'];
