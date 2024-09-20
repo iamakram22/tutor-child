@@ -134,7 +134,7 @@ function handle_export_report()
 			$csv_data_header .= $value . ',';
 		}
 
-		$csv_data_header .= "Order IDs,Payment Statuses,Transaction Numbers,Transaction dates,Payments,Total Amount\n";
+		$csv_data_header .= "Order IDs,Payment Statuses,Transaction Numbers,Transaction dates,Payments,Coupons,Total Amount\n";
 
         // Query all users
 		$args = array(
@@ -153,6 +153,7 @@ function handle_export_report()
             $transaction_numbers = array();
             $transaction_dates = array();
             $total_payments = array();
+            $coupons = array();
             $has_valid_order = false;
 
 			if (class_exists('WooCommerce')) {
@@ -177,7 +178,7 @@ function handle_export_report()
                             'order_id' => $order->get_id(),
                         ));
                         
-                        $transaction_number;
+                        $transaction_number = '-';
                         foreach ($order_notes as $note) {
                             if (strpos($note->content, 'Ref Number') !== false) {
                                 $note_content = $note->content;
@@ -189,6 +190,15 @@ function handle_export_report()
                             }
                         }
                         $transaction_numbers[] = $transaction_number;
+
+                        // Get coupon codes
+                        $order_coupons = $order->get_coupon_codes();
+                        if (!empty($order_coupons)) {
+                            $coupons[] = implode('; ', $order_coupons);
+                        } else {
+                            $coupons[] = '-';
+                        }
+                        
                         $has_valid_order = true;
                     }
 				}
@@ -240,7 +250,8 @@ function handle_export_report()
                         implode('; ', $payment_statuses) . ',' . 
                         implode('; ', $transaction_numbers) . ',' . 
                         implode('; ', $transaction_dates) . ',' . 
-                        implode('; ', $total_payments) . ',';
+                        implode('; ', $total_payments) . ',' .
+                        implode('; ', $coupons) . ',';
 			
 			// Get total spend
 			$total_spent = wc_get_customer_total_spent($user->ID);
