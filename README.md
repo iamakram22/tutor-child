@@ -3,6 +3,10 @@ Child theme for Tutor Starter theme
 
 ## Changelog
 
+== 4.0.0 ==
+- Create testimonials from dashboard
+- Display testimonial as caraousel in homepage footer
+
 == 3.0.0 ==
 - Change export report options
 - Added filter options to export report
