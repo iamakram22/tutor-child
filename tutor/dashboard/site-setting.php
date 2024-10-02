@@ -26,8 +26,10 @@ $phone = CLIENT['client_phone'];
 $email = CLIENT['client_email'];
 $address = CLIENT['client_address'];
 $desc = CLIENT['client_desc'];
+$lastsave = new DateTime(CLIENT['last_update']);
+$date = $lastsave->format('F j, Y g:i a');
 ?>
-<div class="container client_form">
+<div class="container dashboard_form">
 	<form type="post" id="site_editing_form" enctype="multipart/form-data">
 		<?php wp_nonce_field('client_editing', 'client_editing_nonce'); ?>
 		<div class="input-group mb-3">
@@ -81,5 +83,6 @@ $desc = CLIENT['client_desc'];
 
 		<button type="submit" id="settings-submit" class="btn btn-primary">Save changes</button>
 		<span id="result"></span>
+		<p>Last updated: <?php echo $date; ?></p>
 	</form>
 </div>

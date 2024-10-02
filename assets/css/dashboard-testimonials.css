@@ -1,0 +1,75 @@
+#testimonials-list {
+    max-width: 600px;
+    margin-left: 0;
+}
+
+#testimonials-list .testimonial {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #E1E1E1;
+}
+
+#testimonials-list .cross {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    display: grid;
+    place-content: center;
+    border-radius: 10px;
+    border: 1px solid #E1E1E1;
+}
+
+#testimonials-list .cross:hover {
+    box-shadow: 2px 2px 5px rgba(0 0 0 / 0.05);
+}
+
+.testimonial_other {
+    font-style: italic;
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.page-button.active {
+    background-color: #0056b3;
+}
+
+.page-button:hover {
+    background-color: #0056b3;
+}
+
+.page-button.prev,
+.page-button.next {
+    font-weight: bold;
+}
+
+.cross {
+    cursor: pointer;
+    background-color: white;
+}
+
+.testimonial {
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.testimonial:has(.cross:hover) {
+    background-color: rgba(255, 0, 0, 0.2);
+}

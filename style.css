@@ -96,7 +96,7 @@ section.footer-widgets .container {
 .tutor-dashboard-menu-certificate-builder {
   display: none;
 }
-#site_editing_form .btn-primary {
+.dashboard_form .btn-primary {
   --bs-btn-bg: var(--pri);
   --bs-btn-border-color: var(--pri);
 }
@@ -126,7 +126,7 @@ section.footer-widgets .container {
 .contact-detail {
   padding-left: 5px;
 }
-.client_form.container {
+.dashboard_form.container {
   max-width: 540px;
   margin-left: 0;
 }
@@ -142,6 +142,32 @@ section.footer-widgets .container {
   font-weight: 400;
   display: block;
   line-height: 1em;
+}
+#testimonialCarousel {
+  max-width: 1160px;
+  min-height: 250px;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  text-align: center;
+}
+#testimonialCarousel .testimonial-content {
+  padding: 2rem;
+  padding-bottom: 1rem;
+}
+.testimonial-cite h5 {
+  margin-bottom: 0;
+}
+.carousel-control-next.testimonial-nav, .carousel-control-prev.testimonial-nav {
+  width: 5%;
+}
+.testionial-cite {
+  padding-bottom: 1rem;
+}
+.carousel-indicators [data-bs-target] {
+  width: 1rem;
 }
 /**
  * Media queries

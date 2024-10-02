@@ -91,7 +91,7 @@
           data: data,
         },
         beforeSend: function () {
-          result.html("Please wait...");
+          result.text("Please wait...");
         },
         success: function (response) {
           result.text(response.data);
@@ -101,6 +101,33 @@
         },
       });
     }); // form submit
+
+    // Append testimonial on home page
+    if ($('body').hasClass('home')) {
+      const spinner = '<div id="testimonialLoader" class="d-flex justify-content-center mb-2"><img src="'+ myAjax.spinner +'"></div>';
+      $.ajax({
+        type: 'POST',
+        url: myAjax.ajax_url,
+        data: {
+          action: 'load_franchise_testimonials'
+        },
+        beforeSend: function() {
+          $('footer').before(spinner);
+        },
+        success: function(response) {
+          if (response.success) {
+            $('#testimonialLoader').remove();
+            $('footer').before(response.data);
+          } else {
+            console.error('error', response.data);
+          }
+        },
+        error: function(xhr, status, error) {
+          $('#testimonialLoader').remove();
+          console.error('Error: ' + error);
+        }
+      });
+    }
 
     // Course list color
     const bgColors = ["#68b9d8", "#f07f1a", "#b1c642", "#ff5d52", "#fedc09"];

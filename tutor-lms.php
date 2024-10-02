@@ -45,6 +45,10 @@ function site_setting_dashboard($links)
             'title' => __('Site Settings', 'tutor'),
             'icon' => 'tutor-icon-website'
         );
+        $links['testimonial'] = array(
+            'title' => __('Testimonial', 'tutor'),
+            'icon' => 'tutor-icon-star-line'
+        );
         $links['website-admin'] = array(
 			'title' => 'Site Admin',
 			'icon' => 'tutor-icon-gear',
