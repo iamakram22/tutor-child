@@ -354,7 +354,7 @@ function franchise_testimonials($atts): bool|string {
 		return $testimonials;
     }
 
-	return 'No testimonials yet!';
+	return false;
 }
 
 /**
