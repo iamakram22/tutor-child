@@ -115,8 +115,8 @@
           $('footer').before(spinner);
         },
         success: function(response) {
+          $('#testimonialLoader').remove();
           if (response.success) {
-            $('#testimonialLoader').remove();
             $('footer').before(response.data);
           } else {
             console.error('error', response.data);
