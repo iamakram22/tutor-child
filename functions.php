@@ -519,3 +519,23 @@ function prepopulate_billing_fields($fields)
 
     return $fields;
 }
+
+/**
+ * Flush permalinks for custom lms dashboard pages
+ */
+function conditional_flush_rewrites() {
+    // Define an array of dynamic sub-paths within the 'lms-dashboard' page
+    $dynamic_paths = ['site-setting', 'testimonials', 'site-admin'];
+
+    // Build the regex pattern from the dynamic paths
+    $pattern = '/\/lms-dashboard\/(' . implode('|', array_map('preg_quote', $dynamic_paths)) . ')/';
+
+    // Only run if a match is found and the rewrite rules haven't been flushed recently
+    if (preg_match($pattern, $_SERVER['REQUEST_URI']) && !get_transient('flush_rewrite_rules_triggered')) {
+        flush_rewrite_rules();
+
+        // Set a transient to prevent repeated flushing
+        set_transient('flush_rewrite_rules_triggered', true, HOUR_IN_SECONDS);
+    }
+}
+add_action('template_redirect', 'conditional_flush_rewrites');
