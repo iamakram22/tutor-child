@@ -106,7 +106,7 @@ function handle_export_report()
             'order' => 'ASC',
             'orderby' => 'ID'
         ));
-        $default_start_date = date('Y-m-d', $posts->post_date);
+        $default_start_date = date('Y-m-d', strtotime( is_array($posts) ? $posts[0]->post_date : $posts->post_date) );
         $default_end_date = date('Y-m-d', strtotime('today'));
 
         // Get filter values
